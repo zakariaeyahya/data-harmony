@@ -1,0 +1,187 @@
+{
+  "users": [
+    { "id": "u1", "email": "marie@exemple.com", "role": "ADMIN", "is_active": true, "created_at": "2024-01-01T08:00:00Z" },
+    { "id": "u2", "email": "paul@exemple.com",  "role": "USER",  "is_active": true, "created_at": "2024-01-05T09:00:00Z" },
+    { "id": "u3", "email": "sophie@exemple.com","role": "READER","is_active": true, "created_at": "2024-01-10T10:00:00Z" }
+  ],
+  "currentUser": { "id": "u1", "email": "marie@exemple.com", "role": "ADMIN" },
+  "datasets": [
+    {
+      "id": "d1", "user_id": "u2", "name": "ventes_q1", "description": "Ventes du premier trimestre 2024",
+      "source_type": "FILE_CSV", "row_count": 45230, "column_count": 4,
+      "status": "READY", "created_at": "2024-01-10T06:00:00Z", "updated_at": "2024-01-10T06:04:00Z",
+      "columns": [
+        { "id": "c1", "name": "id",      "data_type": "INTEGER", "is_nullable": false },
+        { "id": "c2", "name": "produit", "data_type": "STRING",  "is_nullable": false },
+        { "id": "c3", "name": "montant", "data_type": "FLOAT",   "is_nullable": true  },
+        { "id": "c4", "name": "date",    "data_type": "DATE",    "is_nullable": false }
+      ],
+      "preview": [
+        { "id": 1, "produit": "PC",      "montant": 899.99, "date": "2024-01-15" },
+        { "id": 2, "produit": "Clavier", "montant": 49.90,  "date": "2024-01-16" },
+        { "id": 3, "produit": "Souris",  "montant": 29.90,  "date": "2024-01-16" },
+        { "id": 4, "produit": "Ecran",   "montant": 349.00, "date": "2024-01-17" },
+        { "id": 5, "produit": "Casque",  "montant": 79.90,  "date": "2024-01-18" }
+      ]
+    },
+    {
+      "id": "d2", "user_id": "u1", "name": "clients", "description": "Base clients 2024",
+      "source_type": "FILE_EXCEL", "row_count": 5000, "column_count": 3,
+      "status": "READY", "created_at": "2024-01-10T05:30:00Z", "updated_at": "2024-01-10T05:34:00Z",
+      "columns": [
+        { "id": "c5", "name": "id",   "data_type": "INTEGER", "is_nullable": false },
+        { "id": "c6", "name": "nom",  "data_type": "STRING",  "is_nullable": false },
+        { "id": "c7", "name": "ville","data_type": "STRING",  "is_nullable": true  }
+      ],
+      "preview": [
+        { "id": 1, "nom": "Dupont", "ville": "Paris"    },
+        { "id": 2, "nom": "Martin", "ville": "Lyon"     },
+        { "id": 3, "nom": "Durand", "ville": "Bordeaux" }
+      ]
+    },
+    {
+      "id": "d3", "user_id": "u2", "name": "stock", "description": "Stock entrepôt principal",
+      "source_type": "DATABASE", "row_count": 1200, "column_count": 3,
+      "status": "PROCESSING", "created_at": "2024-01-10T15:00:00Z", "updated_at": "2024-01-10T15:05:00Z",
+      "columns": [
+        { "id": "c8",  "name": "id",       "data_type": "INTEGER", "is_nullable": false },
+        { "id": "c9",  "name": "produit",  "data_type": "STRING",  "is_nullable": false },
+        { "id": "c10", "name": "quantite", "data_type": "INTEGER", "is_nullable": false }
+      ],
+      "preview": []
+    },
+    {
+      "id": "d4", "user_id": "u1", "name": "produits", "description": "Catalogue produits",
+      "source_type": "FILE_CSV", "row_count": 3400, "column_count": 2,
+      "status": "READY", "created_at": "2024-01-09T10:00:00Z", "updated_at": "2024-01-09T10:03:00Z",
+      "columns": [
+        { "id": "c11", "name": "id",  "data_type": "INTEGER", "is_nullable": false },
+        { "id": "c12", "name": "nom", "data_type": "STRING",  "is_nullable": false }
+      ],
+      "preview": [
+        { "id": 1, "nom": "PC Portable" },
+        { "id": 2, "nom": "Clavier"     }
+      ]
+    },
+    {
+      "id": "d5", "user_id": "u2", "name": "commandes", "description": "Commandes clients API",
+      "source_type": "API", "row_count": 12800, "column_count": 4,
+      "status": "ERROR", "created_at": "2024-01-10T12:00:00Z", "updated_at": "2024-01-10T12:01:00Z",
+      "columns": [],
+      "preview": []
+    },
+    {
+      "id": "d6", "user_id": "u1", "name": "logs_web", "description": "Logs serveur web",
+      "source_type": "FILE_JSON", "row_count": 98000, "column_count": 3,
+      "status": "READY", "created_at": "2024-01-10T14:50:00Z", "updated_at": "2024-01-10T14:58:00Z",
+      "columns": [
+        { "id": "c13", "name": "timestamp", "data_type": "TIMESTAMP", "is_nullable": false },
+        { "id": "c14", "name": "method",    "data_type": "STRING",    "is_nullable": false },
+        { "id": "c15", "name": "status",    "data_type": "INTEGER",   "is_nullable": false }
+      ],
+      "preview": [
+        { "timestamp": "2024-01-10T14:00:00Z", "method": "GET",  "status": 200 },
+        { "timestamp": "2024-01-10T14:01:00Z", "method": "POST", "status": 201 }
+      ]
+    }
+  ],
+  "pipelines": [
+    {
+      "id": "p1", "dataset_id": "d1", "dataset_name": "ventes_q1",
+      "status": "SUCCESS",
+      "steps": [
+        { "order": 1, "name": "load",              "label": "Chargement",          "enabled": true, "done": true  },
+        { "order": 2, "name": "remove_duplicates", "label": "Suppression doublons","enabled": true, "done": true  },
+        { "order": 3, "name": "store",             "label": "Stockage",            "enabled": true, "done": true  }
+      ],
+      "started_at": "2024-01-10T06:00:00Z",
+      "finished_at": "2024-01-10T06:04:32Z",
+      "duration": "4min 32s",
+      "error_message": null
+    },
+    {
+      "id": "p2", "dataset_id": "d5", "dataset_name": "commandes",
+      "status": "FAILED",
+      "steps": [
+        { "order": 1, "name": "load",              "label": "Chargement",          "enabled": true, "done": true  },
+        { "order": 2, "name": "remove_duplicates", "label": "Suppression doublons","enabled": true, "done": false }
+      ],
+      "started_at": "2024-01-10T14:30:00Z",
+      "finished_at": "2024-01-10T14:30:15Z",
+      "duration": "0min 15s",
+      "error_message": "Connection timeout sur la source"
+    },
+    {
+      "id": "p3", "dataset_id": "d2", "dataset_name": "clients",
+      "status": "RUNNING",
+      "steps": [
+        { "order": 1, "name": "load",              "label": "Chargement",          "enabled": true, "done": true  },
+        { "order": 2, "name": "remove_duplicates", "label": "Suppression doublons","enabled": true, "done": false },
+        { "order": 3, "name": "store",             "label": "Stockage",            "enabled": true, "done": false }
+      ],
+      "started_at": "2024-01-10T15:00:00Z",
+      "finished_at": null,
+      "duration": null,
+      "progress": 65,
+      "error_message": null
+    },
+    {
+      "id": "p4", "dataset_id": "d4", "dataset_name": "produits",
+      "status": "SUCCESS",
+      "steps": [
+        { "order": 1, "name": "load",  "label": "Chargement", "enabled": true, "done": true },
+        { "order": 2, "name": "store", "label": "Stockage",   "enabled": true, "done": true }
+      ],
+      "started_at": "2024-01-09T10:00:00Z",
+      "finished_at": "2024-01-09T10:03:10Z",
+      "duration": "3min 10s",
+      "error_message": null
+    },
+    {
+      "id": "p5", "dataset_id": "d3", "dataset_name": "stock",
+      "status": "QUEUED",
+      "steps": [],
+      "started_at": null,
+      "finished_at": null,
+      "duration": null,
+      "error_message": null
+    }
+  ],
+  "pipeline_logs": {
+    "p1": [
+      { "id": "l1",  "level": "INFO",    "message": "Démarrage du pipeline",               "timestamp": "2024-01-10T06:00:00Z" },
+      { "id": "l2",  "level": "INFO",    "message": "Connexion à la source...",             "timestamp": "2024-01-10T06:00:01Z" },
+      { "id": "l3",  "level": "INFO",    "message": "Connexion établie",                   "timestamp": "2024-01-10T06:00:02Z" },
+      { "id": "l4",  "level": "INFO",    "message": "Extraction des données... 45230 lignes détectées", "timestamp": "2024-01-10T06:00:05Z" },
+      { "id": "l5",  "level": "INFO",    "message": "Chargement terminé",                  "timestamp": "2024-01-10T06:01:00Z" },
+      { "id": "l6",  "level": "INFO",    "message": "Étape : Suppression doublons",        "timestamp": "2024-01-10T06:01:01Z" },
+      { "id": "l7",  "level": "WARNING", "message": "12 doublons détectés et supprimés",  "timestamp": "2024-01-10T06:02:00Z" },
+      { "id": "l8",  "level": "INFO",    "message": "Écriture dans PostgreSQL...",         "timestamp": "2024-01-10T06:03:00Z" },
+      { "id": "l9",  "level": "INFO",    "message": "Traitement terminé avec succès",      "timestamp": "2024-01-10T06:04:32Z" }
+    ],
+    "p2": [
+      { "id": "l10", "level": "INFO",    "message": "Démarrage du pipeline",               "timestamp": "2024-01-10T14:30:00Z" },
+      { "id": "l11", "level": "INFO",    "message": "Connexion à la source...",            "timestamp": "2024-01-10T14:30:00Z" },
+      { "id": "l12", "level": "INFO",    "message": "Connexion établie",                   "timestamp": "2024-01-10T14:30:01Z" },
+      { "id": "l13", "level": "INFO",    "message": "Extraction des données... 12800 lignes détectées", "timestamp": "2024-01-10T14:30:01Z" },
+      { "id": "l14", "level": "INFO",    "message": "Chargement terminé",                  "timestamp": "2024-01-10T14:30:02Z" },
+      { "id": "l15", "level": "INFO",    "message": "Étape : Suppression doublons",        "timestamp": "2024-01-10T14:30:02Z" },
+      { "id": "l16", "level": "WARNING", "message": "45 valeurs nulles détectées dans la colonne prix", "timestamp": "2024-01-10T14:30:03Z" },
+      { "id": "l17", "level": "ERROR",   "message": "ERREUR : Connection timeout — Impossible d'écrire dans la base. Délai dépassé (10s)", "timestamp": "2024-01-10T14:30:10Z" },
+      { "id": "l18", "level": "ERROR",   "message": "Pipeline terminé avec erreur",        "timestamp": "2024-01-10T14:30:15Z" }
+    ],
+    "p3": [
+      { "id": "l19", "level": "INFO",    "message": "Démarrage du pipeline",               "timestamp": "2024-01-10T15:00:00Z" },
+      { "id": "l20", "level": "INFO",    "message": "Chargement en cours...",              "timestamp": "2024-01-10T15:00:01Z" },
+      { "id": "l21", "level": "INFO",    "message": "Chargement terminé — 5000 lignes",   "timestamp": "2024-01-10T15:00:30Z" },
+      { "id": "l22", "level": "INFO",    "message": "Étape : Suppression doublons en cours", "timestamp": "2024-01-10T15:01:00Z" }
+    ],
+    "p4": [
+      { "id": "l23", "level": "INFO",    "message": "Démarrage du pipeline",               "timestamp": "2024-01-09T10:00:00Z" },
+      { "id": "l24", "level": "INFO",    "message": "Chargement terminé — 3400 lignes",   "timestamp": "2024-01-09T10:01:00Z" },
+      { "id": "l25", "level": "INFO",    "message": "Écriture dans PostgreSQL...",         "timestamp": "2024-01-09T10:02:00Z" },
+      { "id": "l26", "level": "INFO",    "message": "Traitement terminé avec succès",      "timestamp": "2024-01-09T10:03:10Z" }
+    ],
+    "p5": []
+  }
+}
