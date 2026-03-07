@@ -16,7 +16,10 @@
     "strict": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    /* Node.js types so built-ins like `path` are recognized */
+    "types": ["node"]
   },
   "include": ["vite.config.ts"]
 }
